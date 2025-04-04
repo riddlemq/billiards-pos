@@ -1,0 +1,16 @@
+<form method="POST">
+    {% csrf_token %}
+    <label for="club_id">Club ID:</label>
+    <input type="text" name="club_id" required><br>
+
+    <label for="username">Username:</label>
+    <input type="text" name="username" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" required><br>
+
+    <button type="submit">Đăng nhập</button>
+</form>
+
+<a href="{% url 'register' %}">Đăng ký tài khoản</a> |
+<a href="{% url 'password_reset' %}">Quên mật khẩu?</a>

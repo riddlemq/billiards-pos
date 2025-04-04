@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký mua sản phẩm</title>
+</head>
+<body>
+    <h1>Đăng ký mua sản phẩm</h1>
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="id_club_name">Tên Club:</label>
+            {{ form.club_name }}
+        </p>
+        <p>
+            <label for="id_club_id">Club ID:</label>
+            {{ form.club_id }}
+        </p>
+        <p>
+            <label for="id_phone">SĐT:</label>
+            {{ form.phone }}
+        </p>
+        <p>
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </p>
+        <p>
+            <label for="id_password">Password:</label>
+            {{ form.password }}
+        </p>
+        <p>
+            <label for="id_confirm_password">Confirm Password:</label>
+            {{ form.confirm_password }}
+        </p>
+        <p>
+            <label for="id_purchase_type">Loại mua:</label>
+            {{ form.purchase_type }}
+        </p>
+        <p>
+            <label for="id_purchase_years">Số năm mua (nếu mua):</label>
+            {{ form.purchase_years }}
+        </p>
+        <p>
+            <label for="id_payment_method">Phương thức thanh toán:</label>
+            {{ form.payment_method }}
+        </p>
+        <button type="submit">Đăng ký mua sản phẩm</button>
+    </form>
+</body>
+</html>

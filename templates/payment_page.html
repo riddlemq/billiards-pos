@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh Toán</title>
+</head>
+<body>
+    <h1>Thanh Toán</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <p>
+            <label>Phương thức thanh toán:</label><br>
+            <input type="radio" name="payment_method" value="qr" required> Quét QR code<br>
+            <input type="radio" name="payment_method" value="visa" required> Thẻ Visa<br>
+        </p>
+        
+        <!-- Nếu bạn đã lưu thông tin mua (purchase_type, purchase_years) từ đăng ký, bạn có thể ẩn các trường này -->
+        <p>
+            <label>Loại mua:</label>
+            <select name="purchase_type" required>
+                <option value="trial">Trial 14 ngày</option>
+                <option value="purchase">Mua</option>
+            </select>
+        </p>
+        
+        <p>
+            <label>Số năm mua (nếu mua):</label>
+            <input type="number" name="purchase_years" min="1">
+        </p>
+        
+        <!-- Nếu thanh toán bằng QR, bạn có thể hiển thị hình QR code mẫu -->
+        <div id="qr_code_section" style="display:none;">
+            <p>Quét mã QR sau để thanh toán:</p>
+            <img src="https://via.placeholder.com/150" alt="QR Code">
+        </div>
+        
+        <button type="submit">Xác nhận thanh toán</button>
+    </form>
+    
+    <script>
+      // Hiển thị QR code nếu phương thức thanh toán là 'qr'
+      const radios = document.getElementsByName('payment_method');
+      const qrSection = document.getElementById('qr_code_section');
+      for(let i = 0; i < radios.length; i++){
+          radios[i].addEventListener('change', function(){
+              if(this.value === 'qr'){
+                  qrSection.style.display = 'block';
+              } else {
+                  qrSection.style.display = 'none';
+              }
+          });
+      }
+    </script>
+</body>
+</html>
